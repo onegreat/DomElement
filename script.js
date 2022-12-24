@@ -10,20 +10,22 @@ const DomElement = function (selector, height, width, bg, fontSize) {
     this.forFunc = function () {
         let elem;
 
-        if (this.selector[0] === '.') {
-            elem = document.createElement('div')
-            elem.className = this.selector.splice(1)
-        } else if (this.selector[0] === '#') {
+        if (this.selector.charAt(0) === '.') {
+            elem = document.createElement('div');
+        } else if (this.selector.charAt(0) === '#') {
             elem = document.createElement('p');
-            elem.id = this.selector.slice(1);
-        } else {
-            elem.style.cssText = `height: ${this.height}px;
+        }
+
+        elem.style.cssText = `height: ${this.height}px;
             width: ${this.width}px;
             background: ${this.bg};
             font-size: ${this.fontSize}px;`
 
-            return elem;
+        return elem;
 
-        }
     }
 }
+
+const newElement = new DomElement('.block', 500, 500, 'green', 10);
+
+document.body.prepend(newElement.forFunc());
